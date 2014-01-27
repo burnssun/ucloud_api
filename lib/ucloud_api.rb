@@ -44,19 +44,19 @@ EOD
     end
 
     list_styled "listAvailableProductTypes", "producttypes"
-    list_styled "listVirtualMacines", "virtualmachine"
+    list_styled "listVirtualMachines", "virtualmachine"
     list_styled "listTemplates", "template"
     list_styled "listZones", "zone"
     list_styled "listNetworks", "network"
 
-    def method_missing m, *args, &block
-      h = Hash[*args]
-      h[:command] = m.to_s
-      response = raw_cmd(h)
-      r = response.parsed_response["#{m.to_s.downcase}response"]
-      yield(r) if block_given?
-      r
-    end
+    # def method_missing m, *args, &block
+    #   h = Hash[*args]
+    #   h[:command] = m.to_s
+    #   response = raw_cmd(h)
+    #   r = response.parsed_response["#{m.to_s.downcase}response"]
+    #   yield(r) if block_given?
+    #   r
+    # end
     
   end
   
