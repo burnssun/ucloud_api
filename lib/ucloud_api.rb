@@ -1,4 +1,7 @@
+
 require "ucloud_api/version"
+require 'base64'
+require 'openssl'
 require 'addressable/uri'
 require 'httparty'
 
