@@ -6,7 +6,7 @@ require 'ucloud_api/version'
 Gem::Specification.new do |spec|
   spec.name          = "ucloud_api"
   spec.version       = UcloudApi::VERSION
-  spec.authors       = ["Beom Jae Kim"]
+  spec.authors       = ["BJ Kim"]
   spec.email         = ["burnssun@gmail.com"]
   spec.summary       = %q{KT ucloud biz api}
   spec.description   = %q{KT ucloud biz api}
