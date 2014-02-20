@@ -19,12 +19,11 @@ module UcloudApi
       @secretkey = secretkey || ENV["UCLOUDSECRET"]
     end
 
-
     def raw_cmd options={}
       uri = Addressable::URI.new
       hashable_opt = options.merge( {:apiKey => @apikey, :response=>"json"} )
       uri.query_values = hashable_opt.sort
-      hmac = OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new('sha1'), uri.query.downcase, @secretkey)
+      hmac = OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha1'), uri.query.downcase, @secretkey)
       signature = Base64.encode64("#{OpenSSL::HMAC.digest('sha1', @secretkey, uri.query.downcase)}")[0..-2]
       query =  options.merge( {:response=>"json", :apiKey=>@apikey, :signature => signature } )
       self.class.get "/api" , :query => query
