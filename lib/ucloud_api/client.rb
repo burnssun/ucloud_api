@@ -28,10 +28,10 @@ module UcloudApi
       self.class.get "/api" , :query => query
     end
 
-    def self.list_styled command, listname
+    def self.list_styled command, listname, default = {}
       class_eval <<"EOD"
   def #{command}(*args, &block)
-    h = Hash[*args]
+    h = Hash[*args].merge(#{default.inspect})
     h[:command] = "#{command}"
     response = raw_cmd(h)
     list = response.parsed_response["#{command.to_s.downcase}response"]["#{listname}"]
@@ -45,7 +45,7 @@ EOD
     list_styled "listVirtualMachines", "virtualmachine"
     list_styled "listVolumes", "volume"
     list_styled "listSnapshots", "snapshot"
-    list_styled "listTemplates", "template"
+    list_styled "listTemplates", "template", templatefilter: "selfexecutable"
     list_styled "listZones", "zone"
     list_styled "listNetworks", "network"
 
